@@ -8,7 +8,7 @@ namespace Torres_de_Hanoi
 {
     class Hanoi
     {
-        private uint numMovimientos = 0;
+        private uint hitorialMovimientos = 0;
 
         /*TODO: Implementar métodos*/
         public void mover_disco(Pila a, Pila b)
@@ -28,13 +28,53 @@ namespace Torres_de_Hanoi
                 else { b.push(a.pop()); }
             }
 
-            numMovimientos++;
+            hitorialMovimientos++;
         }
 
-        public int iterativo(int n, Pila ini, Pila fin, Pila aux)
+        public uint iterativo(uint n, Pila ini, Pila fin, Pila aux)
         {
-            return 0;
+            if (n == 0) { return hitorialMovimientos; }
+
+            else if (!esPar(n))
+            {
+                while (!terminado(fin, n))
+                {
+                    mover_disco(ini, fin);
+                    if (terminado(fin, n)) { break; }
+                    mover_disco(ini, aux);
+                    mover_disco(aux, fin);
+                    if (terminado(fin, n)) { break; }
+                }
+            }
+            else
+            {
+                while (!terminado(fin, n))
+                {
+                    mover_disco(ini, aux);
+
+
+                    mover_disco(ini, fin);
+
+                    if (terminado(fin, n)) { break; }
+
+                    mover_disco(aux, fin);
+
+                    if (terminado(fin, n)) { break; }
+                }
+            }
+
+            return hitorialMovimientos;
         }
 
+
+        public bool esPar(uint valorNum)
+        {
+            return (valorNum % 2 == 0);
+        }
+
+        public bool terminado(Pila p, uint n)
+        {
+            return (p.Size == n);
+        }
     }
 }
