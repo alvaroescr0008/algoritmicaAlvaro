@@ -19,8 +19,6 @@ namespace Torres_de_Hanoi
         }
 
 
-
-
         public Pila(uint numeroPila)
         {
 
@@ -39,6 +37,9 @@ namespace Torres_de_Hanoi
                 Size++;
             }
         }
+
+
+
 
         public void push(Disco d)
         {
@@ -75,6 +76,8 @@ namespace Torres_de_Hanoi
             }
 
         }
+
+
 
         public bool isEmpty()
         {
